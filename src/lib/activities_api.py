@@ -1,4 +1,3 @@
-import datetime as dt
 import win32com.client
 from jira import JIRA
 import datetime

@@ -1,0 +1,4 @@
+pywin32 == 305
+jira == 3.4.1
+pandas == 1.5.3
+openpyxl == 3.1.2
