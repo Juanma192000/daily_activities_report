@@ -6,4 +6,4 @@ if __name__ == "__main__":
         fill_excel_with_meetings()
         send_email("Home office file has been updated succesfully !!")
     except:
-        send_email("An error has occureed while trying to update Home office file")
+        send_email("An error has occureed while trying to update Home office file.")
