@@ -5,9 +5,7 @@ from openpyxl import load_workbook
 from openpyxl import Workbook
 from openpyxl.styles import Border, Side, Alignment
 from enum import Enum
-from config.config import EXCEL_PATH_READ, NAME_COLABORADOR
-
-TOTAL_HOURS='9'
+from config.config import EXCEL_PATH_READ, NAME_COLABORADOR, TOTAL_HOURS
 
 class Element(Enum):
     ALIGMENT = 1

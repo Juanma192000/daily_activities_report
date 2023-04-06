@@ -2,7 +2,7 @@
 This project is used for obtaining schedules mettings from Teams calendat and assigned tickets form Jira, in order to generate a daily activity report in excel.
 
 # How to setup
-This application needs a python version ```3.XX.XX``` , and install all dependencies: 
+This application needs a python version ```3.10.10``` , and install all dependencies: 
 ```
 pip install -r requirements.txt
 ```

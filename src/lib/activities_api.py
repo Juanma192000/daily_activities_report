@@ -3,11 +3,9 @@ from jira import JIRA
 import datetime
 from models.activity import Activity
 from datetime import date
-from config.config import email, apiToken, JIRA_URL
+from config.config import email, apiToken, JIRA_URL, STATUS_TICKET, PROYECTO
 
-STATUS_TICKET='In Progress'
 meetings=[]
-PROYECTO="Connected services Parsed"
 def get_calendar(begin,end):
     outlook = win32com.client.Dispatch('Outlook.Application').GetNamespace('MAPI')
     calendar = outlook.getDefaultFolder(9).Items
