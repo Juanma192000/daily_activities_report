@@ -1,6 +1,5 @@
 email ="email@aptiv.com"
 email_password = '*****'
-apiToken ='***'
 JIRA_URL = "https://jiraprod.aptiv.com/"
 EXCEL_PATH_READ = r'C:\Users\UserName\Grupo Carso\QTC Engineering - Home office\FolderName\home_office.xlsx'
 NAME_COLABORADOR ='name'
