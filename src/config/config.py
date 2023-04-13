@@ -8,3 +8,4 @@ email_confirm_receiver ='name@condumex.com.mx'
 TOTAL_HOURS='9'
 STATUS_TICKET='In Progress'
 PROYECTO="Connected services Parsed"
+USER_ID="aptiv_userId"

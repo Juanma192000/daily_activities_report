@@ -3,7 +3,7 @@ from jira import JIRA
 import datetime
 from models.activity import Activity
 from datetime import date
-from config.config import email, apiToken, JIRA_URL, STATUS_TICKET, PROYECTO
+from config.config import email_password, JIRA_URL, STATUS_TICKET, PROYECTO, USER_ID
 
 meetings=[]
 def get_calendar(begin,end):
@@ -36,8 +36,9 @@ def get_data_from_jira():
     try:
         print("******************** GETTING JIRA INFO ***********************")
         print("Connecting to JIRA: %s" % JIRA_URL)
-        jira = JIRA(JIRA_URL, basic_auth = (email, apiToken))
-        new_issues = jira.search_issues(f"assignee = currentUser() AND status = '{STATUS_TICKET}' AND resolution = Unresolved order by updated DESC", maxResults=100)
+        jira_options = {'server': JIRA_URL}
+        jira = JIRA(options=jira_options, basic_auth=(USER_ID, email_password))
+        new_issues = jira.search_issues(f"assignee = currentUser() AND statusCategory = '{STATUS_TICKET}' AND resolution = Unresolved", maxResults=100)
         for issue in new_issues:
             issue_num = issue.key
             issue = jira.issue(issue_num)
