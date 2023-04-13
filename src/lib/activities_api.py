@@ -11,24 +11,25 @@ def get_calendar(begin,end):
     calendar = outlook.getDefaultFolder(9).Items
     calendar.IncludeRecurrences = True
     calendar.Sort('[Start]')
-    restriction = "[Start] >= '" + begin.strftime('%m/%d/%Y') + "' AND [END] <= '" + end.strftime('%m/%d/%Y') + "'"
+    restriction = "[Start] >= '" + begin.strftime('%m/%d/%Y') + "' AND [END] < '" + end.strftime('%m/%d/%Y') + "'"
     calendar = calendar.Restrict(restriction)
     print("*******************************************************************")
     return calendar
 
 def get_data_from_calendar(discard):
-    begin = date.today()
+    begin = date.today() - datetime.timedelta(days=1)
     end = datetime.datetime.now() + datetime.timedelta(days=1)
     cal = get_calendar(begin, end)
     print("********************* GETTING CALENDAR INFO ***********************")
     for metting in cal:
-        if not discard in metting.subject:
+        if not discard in metting.subject:           
             star_date=str(metting.start).split("+")[0]
             end_date=str(metting.end).split("+")[0]
-            time_start = datetime.datetime.strptime(star_date, '%Y-%m-%d %H:%M:%S')
-            time_end = datetime.datetime.strptime(end_date, '%Y-%m-%d %H:%M:%S')
-            elapsed=time_end-time_start
-            meetings.append(Activity(metting.subject,PROYECTO,str(time_start.date()),elapsed.seconds/3600))
+            if star_date.split(" ")[0] == str(date.today()):
+                time_start = datetime.datetime.strptime(star_date, '%Y-%m-%d %H:%M:%S')
+                time_end = datetime.datetime.strptime(end_date, '%Y-%m-%d %H:%M:%S')
+                elapsed=time_end-time_start
+                meetings.append(Activity(metting.subject,PROYECTO,str(time_start.date()),elapsed.seconds/3600))
     print("************************* COMPLETED ***********************************")
         
 def get_data_from_jira():
