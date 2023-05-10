@@ -3,7 +3,7 @@ from jira import JIRA
 import datetime
 from models.activity import Activity
 from datetime import date
-from config.config import email, apiToken, JIRA_URL, STATUS_TICKET, PROYECTO
+from config.config import email, apiToken, JIRA_URL, STATUS_TICKET, PROJECT
 
 meetings=[]
 def get_calendar(begin,end):
@@ -29,7 +29,7 @@ def get_data_from_calendar(discard):
                 time_start = datetime.datetime.strptime(star_date, '%Y-%m-%d %H:%M:%S')
                 time_end = datetime.datetime.strptime(end_date, '%Y-%m-%d %H:%M:%S')
                 elapsed=time_end-time_start
-                meetings.append(Activity(metting.subject,PROYECTO,str(time_start.date()),elapsed.seconds/3600))
+                meetings.append(Activity(metting.subject,PROJECT,str(time_start.date()),elapsed.seconds/3600))
     print("************************* COMPLETED ***********************************")
         
 def get_data_from_jira():
@@ -42,7 +42,7 @@ def get_data_from_jira():
             issue_num = issue.key
             issue = jira.issue(issue_num)
             url_ticket=JIRA_URL+"browse/"+issue.key
-            meetings.append(Activity(issue.fields.summary,PROYECTO,str(date.today()),7,url_ticket))
+            meetings.append(Activity(issue.fields.summary,PROJECT,str(date.today()),7,url_ticket))
         print("************************* COMPLETED ***********************************")
     except Exception as e:
         print("Failed to connect to JIRA: %s" % e)
